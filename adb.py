@@ -43,16 +43,30 @@ def FindPackageActivity(ApkPath):
     return os.popen(CMDstr).read().split("'")[1]
 
 #screencap 截图
-def screenshot(logPath):
+def screenshot(logPath:str)->str:
+    '''
+    返回截图完整文件路径\n
+    参数 :string  文件路径\n
+    返回值 : string类型截图文件路径
+    
+    '''
     if not os.path.exists(logPath):
         os.makedirs(logPath)
     CMDstr1='adb shell /system/bin/screencap -p /sdcard/sc.png'
-    CMDstr2='adb pull /sdcard/sc.png '+logPath+'/'+str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    CMDstr2='adb pull /sdcard/sc.png '+logPath+'/'+str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))+'.png'
+    return logPath+'/'+str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))+'.png'
 #确定设备名称
-def getlogPath():
+def getlogPath()->str:
+    '''
+    查看adb链接的设备型号,根据型号确定设备可以考虑使用数据库记录设备数据\n
+    参数 none\n
+    返回值: str 设备型号
+
+
+    '''
     devices=os.popen('adb devices').read().split('\n')[1].split('device')[0]
     CMDstr='adb -s '+ devices+'shell getprop ro.product.model'
-    str1=os.popen(CMDstr).read()
+    return os.popen(CMDstr).read()
  
 
 
