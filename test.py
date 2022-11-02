@@ -1,5 +1,4 @@
 import os 
-# from PIL import Image
 import time
 
 # space=" "
@@ -29,11 +28,11 @@ import time
 
 
 if __name__=='__main__':
-    devices='huawei'
-    project='XXYGf'
-    time=str(time.strftime("%Y-%m-%d", time.localtime()))
-    logPath='log/'+project+'/'+devices+'/'+time+'/'
+    # devices='huawei'
+    # project='XXYGf'
+    # time=str(time.strftime("%Y-%m-%d", time.localtime()))
+    # logPath='log/'+project+'/'+devices+'/'+time+'/'
+    print()
    
 
-    
-    
+ 

@@ -3,7 +3,7 @@ import cv2
 from numpy import mat
 
 
-def readimg(PicPath:'str 类型的图片路径 ')->mat:
+def readimg(PicPath:str)->mat:
     '''
     读取图片返回值
 

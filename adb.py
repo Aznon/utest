@@ -55,6 +55,8 @@ def screenshot(logPath:str)->str:
     CMDstr1='adb shell /system/bin/screencap -p /sdcard/sc.png'
     CMDstr2='adb pull /sdcard/sc.png '+logPath+'/'+str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))+'.png'
     return logPath+'/'+str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))+'.png'
+
+
 #确定设备名称
 def getlogPath()->str:
     '''
@@ -74,4 +76,4 @@ if __name__=='__main__':
     # print(FindPackageName('E:\\UItest\\test.apk'))
     # print(FindPackageActivity('E:\\UItest\\test.apk'))
     # print(len(os.popen('adb devices').read().split('\n')[1].split('device')[0]))
-    getlogPath()
+    print()
