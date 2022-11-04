@@ -1,6 +1,6 @@
 import os 
 import time
-
+import re
 # space=" "
 # def AdbShellHead(str):
 #     Adbstr="adb shell"+str
@@ -32,7 +32,13 @@ if __name__=='__main__':
     # project='XXYGf'
     # time=str(time.strftime("%Y-%m-%d", time.localtime()))
     # logPath='log/'+project+'/'+devices+'/'+time+'/'
-    print()
-   
+    
+    l=['aband','cabsda','cadfa','dadaf']
+    for str in l:
+        if re.match('ab',str) :
+            print('True')
+        else :
+            print('False')
+
 
  
