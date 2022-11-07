@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\UTEST\utest\mainwindow.ui'
+# Form implementation generated from reading ui file 'e:\1\utest\mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -9,48 +9,46 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.Qsci import QsciScintilla
 
 
 class Ui_Utest(object):
     def setupUi(self, Utest):
         Utest.setObjectName("Utest")
-        Utest.resize(678, 517)
+        Utest.resize(1068, 857)
         self.centralwidget = QtWidgets.QWidget(Utest)
         self.centralwidget.setObjectName("centralwidget")
-        self.treeWidget = QtWidgets.QTreeWidget(self.centralwidget)
-        self.treeWidget.setGeometry(QtCore.QRect(0, 50, 101, 141))
-        self.treeWidget.setObjectName("treeWidget")
-        self.treeWidget.headerItem().setText(0, "1")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(0, 0, 21, 23))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(40, 0, 21, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser.setGeometry(QtCore.QRect(140, 50, 256, 192))
-        self.textBrowser.setObjectName("textBrowser")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(150, 40, 54, 12))
-        self.label.setObjectName("label")
-        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(90, 0, 271, 31))
-        self.textEdit.setObjectName("textEdit")
-        self.select = QtWidgets.QPushButton(self.centralwidget)
-        self.select.setGeometry(QtCore.QRect(370, 10, 75, 23))
-        self.select.setObjectName("select")
-        self.textEdit_2 = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit_2.setGeometry(QtCore.QRect(20, 250, 491, 221))
-        self.textEdit_2.setObjectName("textEdit_2")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(442, 29, 131, 91))
-        self.lineEdit.setObjectName("lineEdit")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(418, 130, 151, 101))
-        self.comboBox.setObjectName("comboBox")
+        self.filewindows = QtWidgets.QTreeWidget(self.centralwidget)
+        self.filewindows.setGeometry(QtCore.QRect(0, 100, 171, 481))
+        self.filewindows.setObjectName("filewindows")
+        self.filewindows.headerItem().setText(0, "1")
+        self.bt_start = QtWidgets.QPushButton(self.centralwidget)
+        self.bt_start.setGeometry(QtCore.QRect(0, 0, 21, 23))
+        self.bt_start.setObjectName("bt_start")
+        self.bt_end = QtWidgets.QPushButton(self.centralwidget)
+        self.bt_end.setGeometry(QtCore.QRect(40, 0, 21, 23))
+        self.bt_end.setObjectName("bt_end")
+        self.devices = QtWidgets.QTextBrowser(self.centralwidget)
+        self.devices.setGeometry(QtCore.QRect(790, 100, 256, 481))
+        self.devices.setObjectName("devices")
+        self.filepath = QtWidgets.QTextEdit(self.centralwidget)
+        self.filepath.setGeometry(QtCore.QRect(200, 20, 401, 31))
+        self.filepath.setObjectName("filepath")
+        self.bt_selectapk = QtWidgets.QPushButton(self.centralwidget)
+        self.bt_selectapk.setGeometry(QtCore.QRect(600, 20, 75, 31))
+        self.bt_selectapk.setObjectName("bt_selectapk")
+        self.codeidea = QsciScintilla(self.centralwidget)
+        self.codeidea.setGeometry(QtCore.QRect(180, 100, 601, 481))
+        self.codeidea.setObjectName("codeidea")
+        self.console = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.console.setGeometry(QtCore.QRect(180, 600, 601, 161))
+        self.console.setObjectName("console")
+        self.adbconsole = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.adbconsole.setGeometry(QtCore.QRect(790, 600, 261, 161))
+        self.adbconsole.setObjectName("adbconsole")
         Utest.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Utest)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 678, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1068, 23))
         self.menubar.setObjectName("menubar")
         self.startmenu = QtWidgets.QMenu(self.menubar)
         self.startmenu.setObjectName("startmenu")
@@ -72,10 +70,9 @@ class Ui_Utest(object):
     def retranslateUi(self, Utest):
         _translate = QtCore.QCoreApplication.translate
         Utest.setWindowTitle(_translate("Utest", "Utest"))
-        self.pushButton.setText(_translate("Utest", "PushButton"))
-        self.pushButton_2.setText(_translate("Utest", "PushButton"))
-        self.label.setText(_translate("Utest", "信息"))
-        self.select.setText(_translate("Utest", "浏览"))
+        self.bt_start.setText(_translate("Utest", "PushButton"))
+        self.bt_end.setText(_translate("Utest", "PushButton"))
+        self.bt_selectapk.setText(_translate("Utest", "浏览"))
         self.startmenu.setTitle(_translate("Utest", "开始"))
         self.helpmenu.setTitle(_translate("Utest", "help"))
         self.setmemnu.setTitle(_translate("Utest", "设置"))
