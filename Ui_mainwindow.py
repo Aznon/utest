@@ -10,7 +10,12 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.Qsci import QsciScintilla
-
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.Qsci import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+import keyword
 
 class Ui_Utest(object):
     def setupUi(self, Utest):
@@ -37,9 +42,83 @@ class Ui_Utest(object):
         self.bt_selectapk = QtWidgets.QPushButton(self.centralwidget)
         self.bt_selectapk.setGeometry(QtCore.QRect(600, 20, 75, 31))
         self.bt_selectapk.setObjectName("bt_selectapk")
+        ####### 代码编辑器 
         self.codeidea = QsciScintilla(self.centralwidget)
         self.codeidea.setGeometry(QtCore.QRect(180, 100, 601, 481))
         self.codeidea.setObjectName("codeidea")
+
+        font=QFont()
+        font.setFamily('Courier')
+        font.setPointSize(12)
+        font.setFixedPitch(True)
+        self.setFont(font)
+        self.codeidea.setUtf8(True)
+        self.codeidea.setMarginsFont(font)
+        self.codeidea.setMarginWidth(0,len(str(len(self.codeidea.text().split('\n'))))*20)
+        self.codeidea.setMarginLineNumbers(0,True)
+ 
+        #self.codeidea.setEdgeMode(QsciScintilla.EdgeLine)
+        #self.codeidea.setEdgeColumn(80)
+       # self.codeidea.setEdgeColor(QColor(0,0,0))
+ 
+        self.codeidea.setBraceMatching(QsciScintilla.StrictBraceMatch)
+ 
+        self.codeidea.setIndentationsUseTabs(True)
+        self.codeidea.setIndentationWidth(4)
+        self.codeidea.setTabIndents(True)
+        self.codeidea.setAutoIndent(True)
+        self.codeidea.setBackspaceUnindents(True)
+        self.codeidea.setTabWidth(4)
+ 
+        self.codeidea.setCaretLineVisible(True)
+        self.codeidea.setCaretLineBackgroundColor(QColor('#FFFFCD'))
+ 
+        self.codeidea.setIndentationGuides(True)
+ 
+        self.codeidea.setFolding(QsciScintilla.PlainFoldStyle)
+        self.codeidea.setMarginWidth(2,12)
+ 
+        self.codeidea.markerDefine(QsciScintilla.Minus, QsciScintilla.SC_MARKNUM_FOLDEROPEN)
+        self.codeidea.markerDefine(QsciScintilla.Plus, QsciScintilla.SC_MARKNUM_FOLDER)
+        self.codeidea.markerDefine(QsciScintilla.Minus, QsciScintilla.SC_MARKNUM_FOLDEROPENMID)
+        self.codeidea.markerDefine(QsciScintilla.Plus, QsciScintilla.SC_MARKNUM_FOLDEREND)
+ 
+        self.codeidea.setMarkerBackgroundColor(QColor("#FFFFFF"), QsciScintilla.SC_MARKNUM_FOLDEREND)
+        self.codeidea.setMarkerForegroundColor(QColor("#272727"), QsciScintilla.SC_MARKNUM_FOLDEREND)
+        self.codeidea.setMarkerBackgroundColor(QColor("#FFFFFF"), QsciScintilla.SC_MARKNUM_FOLDEROPENMID)
+        self.codeidea.setMarkerForegroundColor(QColor("#272727"),QsciScintilla.SC_MARKNUM_FOLDEROPENMID)
+        self.codeidea.setAutoCompletionSource(QsciScintilla.AcsAll)
+        self.codeidea.setAutoCompletionCaseSensitivity(True)
+        self.codeidea.setAutoCompletionReplaceWord(False)
+        self.codeidea.setAutoCompletionThreshold(1)
+        self.codeidea.setAutoCompletionUseSingle(QsciScintilla.AcusExplicit)
+
+        self.lexer=highlight(self.codeidea)
+        self.codeidea.setLexer(self.lexer)
+        self.mod=False
+        self.__api = QsciAPIs(self.lexer)
+        autocompletions = keyword.kwlist+["abs", "all", "any", "basestring", "bool",
+                "callable", "chr", "classmethod", "cmp", "compile",
+                "complex", "delattr", "dict", "dir", "divmod",
+                "enumerate", "eval", "execfile", "exit", "file",
+                "filter", "float", "frozenset", "getattr", "globals",
+                "hasattr", "hex", "id", "int", "isinstance",
+                "issubclass", "iter", "len", "list", "locals", "map",
+                "max", "min", "object", "oct", "open", "ord", "pow",
+                "property", "range", "reduce", "repr", "reversed",
+                "round", "set", "setattr", "slice", "sorted",
+                "staticmethod", "str", "sum", "super", "tuple", "type",
+                "vars", "zip",'print']
+        for ac in autocompletions:
+            self.__api.add(ac)
+        self.__api.prepare()
+        self.codeidea.autoCompleteFromAll()
+
+
+
+
+        
+        ############
         self.console = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.console.setGeometry(QtCore.QRect(180, 600, 601, 161))
         self.console.setObjectName("console")
@@ -76,3 +155,32 @@ class Ui_Utest(object):
         self.startmenu.setTitle(_translate("Utest", "开始"))
         self.helpmenu.setTitle(_translate("Utest", "help"))
         self.setmemnu.setTitle(_translate("Utest", "设置"))
+
+
+class highlight(QsciLexerPython):
+    def __init__(self,parent):
+        QsciLexerPython.__init__(self,parent)
+        font = QFont()
+        font.setFamily('Courier')
+        font.setPointSize(12)
+        font.setFixedPitch(True)
+        self.setFont(font)
+        self.setColor(QColor(0, 0, 0))
+        self.setPaper(QColor(255, 255, 255))
+        self.setColor(QColor("#00FF00"), QsciLexerPython.ClassName)
+        self.setColor(QColor("#B0171F"), QsciLexerPython.Keyword)
+        self.setColor(QColor("#00FF00"), QsciLexerPython.Comment)
+        self.setColor(QColor("#FF00FF"), QsciLexerPython.Number)
+        self.setColor(QColor("#0000FF"), QsciLexerPython.DoubleQuotedString)
+        self.setColor(QColor("#0000FF"), QsciLexerPython.SingleQuotedString)
+        self.setColor(QColor("#288B22"), QsciLexerPython.TripleSingleQuotedString)
+        self.setColor(QColor("#288B22"), QsciLexerPython.TripleDoubleQuotedString)
+        self.setColor(QColor("#0000FF"), QsciLexerPython.FunctionMethodName)
+        self.setColor(QColor("#191970"), QsciLexerPython.Operator)
+        self.setColor(QColor("#000000"), QsciLexerPython.Identifier)
+        self.setColor(QColor("#00FF00"), QsciLexerPython.CommentBlock)
+        self.setColor(QColor("#0000FF"), QsciLexerPython.UnclosedString)
+        self.setColor(QColor("#FFFF00"), QsciLexerPython.HighlightedIdentifier)
+        self.setColor(QColor("#FF8000"), QsciLexerPython.Decorator)
+        self.setFont(QFont('Courier',12,weight=QFont.Bold),5)
+        self.setFont(QFont('Courier',12,italic=True),QsciLexerPython.Comment)
