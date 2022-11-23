@@ -15,6 +15,7 @@ from PyQt5.QtCore import *
 from PyQt5.Qsci import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5  import Qt
 import keyword
 
 class Ui_Utest(object):
@@ -27,6 +28,11 @@ class Ui_Utest(object):
         self.filewindows.setGeometry(QtCore.QRect(0, 100, 171, 481))
         self.filewindows.setObjectName("filewindows")
         self.filewindows.headerItem().setText(0, "1")
+        self.filewindows.setColumnCount(1)
+        self.filewindows.setColumnWidth(0, 50)
+        self.filewindows.setHeaderLabels(["EXPLORER"])
+        self.filewindows.setIconSize(Qt.QSize(25, 25))
+       # self.filewindows.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.bt_start = QtWidgets.QPushButton(self.centralwidget)
         self.bt_start.setGeometry(QtCore.QRect(0, 0, 21, 23))
         self.bt_start.setObjectName("bt_start")

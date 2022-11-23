@@ -33,12 +33,8 @@ if __name__=='__main__':
     # time=str(time.strftime("%Y-%m-%d", time.localtime()))
     # logPath='log/'+project+'/'+devices+'/'+time+'/'
     
-    l=['aband','cabsda','cadfa','dadaf']
-    for str in l:
-        if re.match('ab',str) :
-            print('True')
-        else :
-            print('False')
+    path=os.listdir('./')
+    print(path)
 
 
  
